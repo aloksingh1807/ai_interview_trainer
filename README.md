@@ -90,5 +90,7 @@ ai_interview_trainer/
     ├── database/         # MongoDB and in-memory mock fallback collections
     ├── app.py            # API routing controllers and LLM prompt compilers
     └── requirements.txt
+
+
 🛡️ License & Attributions
 Built with 💙 by Alok Singh. Inspired by stripe, linear, and modern AI startups.

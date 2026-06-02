@@ -1,0 +1,327 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --font-heading: 'Sora', 'Outfit', sans-serif;
+    --font-sans: 'Inter', sans-serif;
+    
+    /* Unified Dark Theme Tokens */
+    --bg-primary: #08080C;
+    --bg-secondary: #0E0E12;
+    --bg-card: rgba(18, 18, 24, 0.7);
+    --text-primary: #F4F4F5;
+    --text-secondary: #A1A1AA;
+    --border-color: rgba(39, 39, 42, 0.5);
+    
+    /* Default Tint - Blue */
+    --accent-primary: #3B82F6;
+    --accent-secondary: #8B5CF6;
+    --accent-glow: rgba(59, 130, 246, 0.15);
+    
+    --ease-lambo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Dynamic Accent Tints - Dark Mode */
+  :root[data-tint="blue"] {
+    --accent-primary: #3B82F6;
+    --accent-secondary: #8B5CF6;
+    --accent-glow: rgba(59, 130, 246, 0.2);
+  }
+  :root[data-tint="purple"] {
+    --accent-primary: #A855F7;
+    --accent-secondary: #EC4899;
+    --accent-glow: rgba(168, 85, 247, 0.2);
+  }
+  :root[data-tint="green"] {
+    --accent-primary: #10B981;
+    --accent-secondary: #06B6D4;
+    --accent-glow: rgba(16, 185, 129, 0.2);
+  }
+  :root[data-tint="orange"] {
+    --accent-primary: #F97316;
+    --accent-secondary: #F59E0B;
+    --accent-glow: rgba(249, 115, 22, 0.2);
+  }
+  :root[data-tint="red"] {
+    --accent-primary: #EF4444;
+    --accent-secondary: #F43F5E;
+    --accent-glow: rgba(239, 68, 68, 0.2);
+  }
+
+  /* Unified Light Theme Tokens (Apple Liquid Glass) */
+  :root.light {
+    color-scheme: light;
+    --bg-primary: #F4F4F7;
+    --bg-secondary: rgba(255, 255, 255, 0.65);
+    --bg-card: rgba(255, 255, 255, 0.55);
+    --text-primary: #1C1C1E;
+    --text-secondary: #636366;
+    --border-color: rgba(0, 0, 0, 0.07);
+    
+    /* Default Tint - Blue */
+    --accent-primary: #007AFF;
+    --accent-secondary: #5856D6;
+    --accent-glow: rgba(0, 122, 255, 0.1);
+  }
+
+  /* Dynamic Accent Tints - Light Mode */
+  :root.light[data-tint="blue"] {
+    --accent-primary: #007AFF;
+    --accent-secondary: #5856D6;
+    --accent-glow: rgba(0, 122, 255, 0.12);
+  }
+  :root.light[data-tint="purple"] {
+    --accent-primary: #8E24AA;
+    --accent-secondary: #D81B60;
+    --accent-glow: rgba(142, 36, 170, 0.12);
+  }
+  :root.light[data-tint="green"] {
+    --accent-primary: #00A86B;
+    --accent-secondary: #008080;
+    --accent-glow: rgba(0, 168, 107, 0.12);
+  }
+  :root.light[data-tint="orange"] {
+    --accent-primary: #FF4500;
+    --accent-secondary: #FFA500;
+    --accent-glow: rgba(255, 69, 0, 0.12);
+  }
+  :root.light[data-tint="red"] {
+    --accent-primary: #FF3B30;
+    --accent-secondary: #FF2D55;
+    --accent-glow: rgba(255, 59, 48, 0.12);
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.5s var(--ease-lambo), color 0.5s var(--ease-lambo);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    transition: color 0.5s var(--ease-lambo);
+  }
+}
+
+/* Apple Liquid Glass Panels & Shadows */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s var(--ease-lambo);
+}
+
+.glass-panel:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 20px 50px -12px var(--accent-glow);
+}
+
+/* Light Theme overrides for Apple Liquid Glass */
+:root.light .glass-panel {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.01),
+    0 12px 36px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+:root.light .glass-panel:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.01),
+    0 20px 48px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+/* Automatic responsive Light Mode helpers */
+:root.light .bg-zinc-950,
+:root.light .bg-zinc-950\/45,
+:root.light .bg-zinc-900,
+:root.light .bg-zinc-900\/30,
+:root.light .bg-zinc-900\/40,
+:root.light .bg-zinc-850,
+:root.light .bg-zinc-800 {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+:root.light .border-zinc-800,
+:root.light .border-zinc-800\/80,
+:root.light .border-zinc-900 {
+  border-color: var(--border-color) !important;
+}
+
+:root.light .text-zinc-300,
+:root.light .text-zinc-400,
+:root.light .text-zinc-500,
+:root.light .text-zinc-650,
+:root.light .text-zinc-350 {
+  color: var(--text-secondary) !important;
+}
+
+:root.light .text-white {
+  color: var(--text-primary) !important;
+}
+
+:root.light .bg-white {
+  background-color: var(--text-primary) !important;
+  color: var(--bg-primary) !important;
+}
+
+/* Ambient Animated Blobs Keyframes */
+@keyframes blob-bounce {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -60px) scale(1.15);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+@keyframes blob-bounce-rev {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-50px, 50px) scale(0.85);
+  }
+  66% {
+    transform: translate(40px, -30px) scale(1.1);
+  }
+}
+
+.animate-blob-slow {
+  animation: blob-bounce 22s infinite ease-in-out;
+}
+
+.animate-blob-reverse {
+  animation: blob-bounce-rev 26s infinite ease-in-out;
+}
+
+/* Mouse spotlight backdrops */
+.kinetic-spotlight-orb {
+  background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Magnetics */
+.magnetic-interactive {
+  transition: transform 0.4s var(--ease-lambo), box-shadow 0.4s var(--ease-lambo);
+}
+
+.magnetic-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px -8px var(--accent-glow);
+}
+
+.magnetic-interactive:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Pulsing rings */
+.pulse-glow-ring {
+  box-shadow: 0 0 0 0 var(--accent-glow);
+  animation: pulse-glow-anim 2s infinite var(--ease-lambo);
+}
+
+@keyframes pulse-glow-anim {
+  0% {
+    box-shadow: 0 0 0 0 var(--accent-glow);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+/* Kinetic reveal text */
+.text-reveal-kinetic {
+  animation: reveal-sweep 0.9s var(--ease-lambo) forwards;
+  opacity: 0;
+  filter: blur(16px);
+  transform: translateY(20px);
+}
+
+@keyframes reveal-sweep {
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0px);
+  }
+}
+
+/* Sound Wave bars */
+.wave-visualizer-bar {
+  animation: wave-bounce-anim 1s ease-in-out infinite alternate;
+}
+
+@keyframes wave-bounce-anim {
+  0% {
+    height: 20%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+/* Customized scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 120, 120, 0.15);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(120, 120, 120, 0.35);
+}
+
+/* Absolute selectability & inputs overrides */
+input:not(.inputarea), select, textarea:not(.inputarea) {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  color: var(--text-primary) !important;
+  background-color: var(--bg-primary) !important;
+  border-color: var(--border-color) !important;
+  transition: all 0.3s var(--ease-lambo);
+}
+
+:root.light input:not(.inputarea), :root.light select, :root.light textarea:not(.inputarea) {
+  color: var(--text-primary) !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: var(--border-color) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 0 0 3px var(--accent-glow) !important;
+}
+
+::selection {
+  background: var(--accent-glow) !important;
+  color: var(--text-primary) !important;
+}
